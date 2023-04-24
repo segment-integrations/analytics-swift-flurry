@@ -48,6 +48,8 @@ class FlurryDestination: EventPlugin {
     weak var analytics: Analytics? = nil
 
     var screenTracksEvents = false
+    
+    public init() {}
 
     func update(settings: Settings, type: UpdateType) {
         // we've already set up this singleton SDK, can't do it again, so skip.

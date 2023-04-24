@@ -16,7 +16,7 @@
 		46EDC71327C6B8D200B870D7 /* BasicExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EDC71227C6B8D200B870D7 /* BasicExampleUITestsLaunchTests.swift */; };
 		46EDC72127C6B92C00B870D7 /* Segment in Frameworks */ = {isa = PBXBuildFile; productRef = 46EDC72027C6B92C00B870D7 /* Segment */; };
 		8283F97A291ADB8E0043231F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8283F979291ADB8E0043231F /* SystemConfiguration.framework */; };
-		82855B0F291ACD5600981B59 /* SegmentFlurry in Frameworks */ = {isa = PBXBuildFile; productRef = 82855B0E291ACD5600981B59 /* SegmentFlurry */; };
+		EAEAF7F629F66FDD0067DF96 /* SegmentFlurry in Frameworks */ = {isa = PBXBuildFile; productRef = EAEAF7F529F66FDD0067DF96 /* SegmentFlurry */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +48,7 @@
 		46EDC71027C6B8D200B870D7 /* BasicExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicExampleUITests.swift; sourceTree = "<group>"; };
 		46EDC71227C6B8D200B870D7 /* BasicExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8283F979291ADB8E0043231F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EAEAF7F429F66FB20067DF96 /* analytics-swift-integrations-flurry */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "analytics-swift-integrations-flurry"; path = ../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8283F97A291ADB8E0043231F /* SystemConfiguration.framework in Frameworks */,
-				82855B0F291ACD5600981B59 /* SegmentFlurry in Frameworks */,
+				EAEAF7F629F66FDD0067DF96 /* SegmentFlurry in Frameworks */,
 				46EDC72127C6B92C00B870D7 /* Segment in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +82,7 @@
 		46EDC6E927C6B8D100B870D7 = {
 			isa = PBXGroup;
 			children = (
+				EAEAF7F329F66FB20067DF96 /* Packages */,
 				46EDC6F427C6B8D100B870D7 /* BasicExample */,
 				46EDC70527C6B8D200B870D7 /* BasicExampleTests */,
 				46EDC70F27C6B8D200B870D7 /* BasicExampleUITests */,
@@ -143,6 +145,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EAEAF7F329F66FB20067DF96 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				EAEAF7F429F66FB20067DF96 /* analytics-swift-integrations-flurry */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -161,7 +171,7 @@
 			name = BasicExample;
 			packageProductDependencies = (
 				46EDC72027C6B92C00B870D7 /* Segment */,
-				82855B0E291ACD5600981B59 /* SegmentFlurry */,
+				EAEAF7F529F66FDD0067DF96 /* SegmentFlurry */,
 			);
 			productName = BasicExample;
 			productReference = 46EDC6F227C6B8D100B870D7 /* BasicExample.app */;
@@ -622,7 +632,7 @@
 			package = 46EDC71F27C6B92C00B870D7 /* XCRemoteSwiftPackageReference "analytics-swift" */;
 			productName = Segment;
 		};
-		82855B0E291ACD5600981B59 /* SegmentFlurry */ = {
+		EAEAF7F529F66FDD0067DF96 /* SegmentFlurry */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SegmentFlurry;
 		};
