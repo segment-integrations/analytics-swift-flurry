@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "Segment",
-        "repositoryURL": "https://github.com/segmentio/analytics-swift",
+        "repositoryURL": "https://github.com/segmentio/analytics-swift.git",
         "state": {
-          "branch": "main",
+          "branch": null,
           "revision": "79fb17a5d4abf8f80e6a0935e57c7df7b670a6c0",
-          "version": null
+          "version": "1.4.1"
         }
       },
       {

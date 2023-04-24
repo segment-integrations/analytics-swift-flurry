@@ -34,13 +34,14 @@
 
 import Foundation
 import Segment
-import Flurry
+import Flurry_iOS_SDK
 
-/**
- An implementation of the Flurry Analytics device mode destination as a plugin.
- */
+@objc(SEGFlurryDestination)
+public class ObjCSegmentFlurry: NSObject, ObjCPlugin, ObjCPluginShim {
+    public func instance() -> EventPlugin { return FlurryDestination() }
+}
 
-class FlurryDestination: DestinationPlugin {
+class FlurryDestination: EventPlugin {
     let timeline = Timeline()
     let type = PluginType.destination
     let key = "Flurry"
@@ -52,7 +53,7 @@ class FlurryDestination: DestinationPlugin {
         // we've already set up this singleton SDK, can't do it again, so skip.
         guard type == .initial else { return }
 
-        guard let flurrySettings: FlurrySettings = settings.integrationSettings(forPlugin: self) else { return }
+        guard let flurrySettings: FlurrySettings = settings.integrationSettings(forKey: key) else { return }
 
         let builder = FlurrySessionBuilder()
 

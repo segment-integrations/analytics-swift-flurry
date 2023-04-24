@@ -22,13 +22,13 @@ let package = Package(
         .package(
             name: "Segment",
             url: "https://github.com/segmentio/analytics-swift.git",
-            from: "1.1.2"
+            from: "1.4.1"
         ),
         .package(
             name: "Flurry",
             url:  "https://github.com/flurry/FlurrySwiftPackage/",
             from: "12.0.0"
-        ),
+        )
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
