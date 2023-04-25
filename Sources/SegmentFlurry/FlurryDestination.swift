@@ -41,17 +41,17 @@ public class ObjCSegmentFlurry: NSObject, ObjCPlugin, ObjCPluginShim {
     public func instance() -> EventPlugin { return FlurryDestination() }
 }
 
-class FlurryDestination: EventPlugin {
+public class FlurryDestination: EventPlugin {
     let timeline = Timeline()
-    let type = PluginType.destination
+    public let type = PluginType.enrichment
     let key = "Flurry"
-    weak var analytics: Analytics? = nil
+    weak public var analytics: Analytics? = nil
 
     var screenTracksEvents = false
     
-    public init() {}
+    public init() { }
 
-    func update(settings: Settings, type: UpdateType) {
+    public func update(settings: Settings, type: UpdateType) {
         // we've already set up this singleton SDK, can't do it again, so skip.
         guard type == .initial else { return }
 
@@ -70,7 +70,7 @@ class FlurryDestination: EventPlugin {
         Flurry.startSession(apiKey: flurrySettings.apiKey, sessionBuilder: builder)
     }
 
-    func identify(event: IdentifyEvent) -> IdentifyEvent? {
+    public func identify(event: IdentifyEvent) -> IdentifyEvent? {
         Flurry.set(userId: event.userId)
 
         if let traits = event.traits?.dictionaryValue {
@@ -86,13 +86,13 @@ class FlurryDestination: EventPlugin {
         return event
     }
 
-    func track(event: TrackEvent) -> TrackEvent? {
+    public func track(event: TrackEvent) -> TrackEvent? {
         let props = truncate(properties: event.properties?.dictionaryValue)
         Flurry.log(eventName: event.event, parameters: props)
         return event
     }
 
-    func screen(event: ScreenEvent) -> ScreenEvent? {
+    public func screen(event: ScreenEvent) -> ScreenEvent? {
         if screenTracksEvents {
             let props = truncate(properties: event.properties?.dictionaryValue)
             Flurry.log(eventName: "Viewed \(event.name ?? "") Screen", parameters: props)
