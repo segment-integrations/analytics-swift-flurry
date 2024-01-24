@@ -34,25 +34,28 @@
 
 import Foundation
 import Segment
-import Flurry
+import Flurry_iOS_SDK
 
-/**
- An implementation of the Flurry Analytics device mode destination as a plugin.
- */
+@objc(SEGFlurryDestination)
+public class ObjCSegmentFlurry: NSObject, ObjCPlugin, ObjCPluginShim {
+    public func instance() -> EventPlugin { return FlurryDestination() }
+}
 
-class FlurryDestination: DestinationPlugin {
-    let timeline = Timeline()
-    let type = PluginType.destination
-    let key = "Flurry"
-    weak var analytics: Analytics? = nil
+public class FlurryDestination: DestinationPlugin {
+    public let timeline = Timeline()
+    public let type = PluginType.destination
+    public let key = "Flurry"
+    weak public var analytics: Analytics? = nil
 
     var screenTracksEvents = false
 
-    func update(settings: Settings, type: UpdateType) {
+    public init() { }
+    
+    public func update(settings: Settings, type: UpdateType) {
         // we've already set up this singleton SDK, can't do it again, so skip.
         guard type == .initial else { return }
 
-        guard let flurrySettings: FlurrySettings = settings.integrationSettings(forPlugin: self) else { return }
+        guard let flurrySettings: FlurrySettings = settings.integrationSettings(forKey: key) else { return }
 
         let builder = FlurrySessionBuilder()
 
@@ -67,29 +70,27 @@ class FlurryDestination: DestinationPlugin {
         Flurry.startSession(apiKey: flurrySettings.apiKey, sessionBuilder: builder)
     }
 
-    func identify(event: IdentifyEvent) -> IdentifyEvent? {
+    public func identify(event: IdentifyEvent) -> IdentifyEvent? {
         Flurry.set(userId: event.userId)
 
         if let traits = event.traits?.dictionaryValue {
             if let gender = traits["gender"] as? String {
                 Flurry.set(gender: String(gender.prefix(1)))
             }
-
             if let value = traits["age"] as? String, let age = Int32(value) {
                 Flurry.set(age: age)
             }
         }
-
         return event
     }
 
-    func track(event: TrackEvent) -> TrackEvent? {
+    public func track(event: TrackEvent) -> TrackEvent? {
         let props = truncate(properties: event.properties?.dictionaryValue)
         Flurry.log(eventName: event.event, parameters: props)
         return event
     }
 
-    func screen(event: ScreenEvent) -> ScreenEvent? {
+    public func screen(event: ScreenEvent) -> ScreenEvent? {
         if screenTracksEvents {
             let props = truncate(properties: event.properties?.dictionaryValue)
             Flurry.log(eventName: "Viewed \(event.name ?? "") Screen", parameters: props)

@@ -22,12 +22,12 @@ let package = Package(
         .package(
             name: "Segment",
             url: "https://github.com/segmentio/analytics-swift.git",
-            from: "1.1.2"
+            from: "1.5.2"
         ),
         .package(
             name: "Flurry",
             url:  "https://github.com/flurry/FlurrySwiftPackage/",
-            from: "12.0.0"
+            from: "12.4.0"
         ),
     ],
     targets: [
